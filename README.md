@@ -18,4 +18,6 @@ __test-profiles-sub-module-3__ (Module only for optional testing) - does not inc
 <br> To include one to your build\testing, you need use next instruction:
 
      mvn test -P acceptance
+     mvn test -P acceptance -Dgroups=db,deploy
+
 
