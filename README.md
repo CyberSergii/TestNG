@@ -20,4 +20,3 @@ __test-profiles-sub-module-3__ (Module only for optional testing) - does not inc
      mvn test -P acceptance
      mvn test -P acceptance -Dgroups=db,deploy
 
-

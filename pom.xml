@@ -16,11 +16,67 @@
   <profiles>
     <profile>
       <id>acceptance</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <modules>
         <module>sub-module-3</module>
       </modules>
     </profile>
+    <profile>
+      <id>local</id>
+    </profile>
   </profiles>
+  <scm>
+    <connection>scm:git:git@gitlab.t1.tenet:cp/FannieMae.git</connection>
+    <url>scm:git:git@gitlab.t1.tenet:cp/FannieMae.git</url>
+    <developerConnection>scm:git:git@gitlab.t1.tenet:cp/FannieMae.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>maven</id>
+      <name>Maven</name>
+      <url>http://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>com.wordapp</id>
+      <url>http://nexus.t1.tenet:8081/nexus/content/repositories/worldapp</url>
+    </repository>
+    <repository>
+      <id>com.wordapp.releases</id>
+      <url>http://nexus.t1.tenet:8081/nexus/content/repositories/releases</url>
+    </repository>
+    <repository>
+      <id>com.wordapp.snapshots</id>
+      <url>http://nexus.t1.tenet:8081/nexus/content/repositories/snapshots</url>
+    </repository>
+    <repository>
+      <id>apache.nexus</id>
+      <name>ASF Nexus Staging</name>
+      <url>https://repository.apache.org/content/groups/staging/</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>internal</id>
+      <name>Internal Releases</name>
+      <url>http://nexus.t1.tenet:8081/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>internal</id>
+      <name>Internal Snapshots</name>
+      <url>http://nexus.t1.tenet:8081/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
@@ -45,6 +101,11 @@
         <artifactId>slf4j-api</artifactId>
         <version>1.7.12</version>
       </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.37</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -64,5 +125,80 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
   </dependencies>
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.4</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>http://nexus.t1.tenet:8081/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+          <configuration>
+            <!--he tag base directory in SVN, you must define it if you don't use the standard svn layout (trunk/tags/branches).
+            For example, http://svn.apache.org/repos/asf/maven/plugins/tags. The URL is an SVN URL and does not include the SCM provider and protocol.
+            User property is: tagBase.-->
+            <!--<tagBase>svn://svn.zoo.com/zoo/tags</tagBase>-->
+            <!--The branch base directory in SVN, you must define it if you don't use the standard svn layout (trunk/tags/branches).
+            For example, http://svn.apache.org/repos/asf/maven/plugins/branches. The URL is an SVN URL and does not include the SCM provider and protocol.-->
+            <!--<branchBase>svn://svn.zoo.com/zoo/branches</branchBase>-->
+            <preparationGoals>clean install</preparationGoals>
+            <goals>deploy</goals>
+            <!--
+                        <updateBranchVersions>true</updateBranchVersions>
+                        <updateDependencies>true</updateDependencies>
+                        <updateVersionsToSnapshot>true</updateVersionsToSnapshot>
+                        <updateWorkingCopyVersions>true</updateWorkingCopyVersions>
+            -->
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <releaseProfiles>local</releaseProfiles>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19.1</version>
+          <configuration>
+            <!--<groups>event-listener-ui,ks-adapter,business-logic,repository,utils,web,it</groups>-->
+            <groups>repository,utils</groups>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <!--
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nexus-staging-maven-plugin</artifactId>
+            </plugin>
+      -->
+<!--
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

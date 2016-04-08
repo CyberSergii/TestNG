@@ -12,8 +12,13 @@ public class TestApp {
     //throw new RuntimeException();
   }
 
+  @Test
+  public void anImportantMethod() {
+    System.out.println("anImportantMethod.");
+  }
+
   //Run if method1() is passed.
-  @Test(dependsOnMethods = { "method1" })
+  @Test(dependsOnMethods = { "anImportantMethod", "method1" })
   public void method2() {
     System.out.println("This is method 2");
   }

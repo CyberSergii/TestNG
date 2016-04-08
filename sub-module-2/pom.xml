@@ -8,8 +8,95 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
+  <version>1.0-SNAPSHOT</version>
 
   <artifactId>test-profiles-sub-module-2</artifactId>
 
+  <properties>
+    <build.profile.id>local</build.profile.id>
+  </properties>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>3.4.0</version>
+        <configuration>
+          <outputFileEncoding>UTF-8</outputFileEncoding>
+          <changeLogFile>../sql/liquibase.changeLogFile.xml</changeLogFile>
+          <contexts>test</contexts>
+          <!--<driver>com.mysql.jdbc.Driver</driver>-->
+          <!--<url>jdbc:mysql://localhost:3306/fnma_t1_ssstest_com_CP_3734?useUnicode=true&amp;characterEncoding=utf8&amp;connectTimeout=10000&amp;socketTimeout=1800000&amp;jdbcCompliantTruncation=false</url>-->
+          <!--<username>root</username>-->
+          <!--<password>1234</password>-->
+
+          <propertyFile>../profiles/local/resources/liquibase.db.properties</propertyFile>
+          <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+
+          <tag>${parent.artifactId}</tag>
+          <!--<rollbackTag>liquibase.rollbackTag</rollbackTag>-->
+          <!--<rollbackDate></rollbackDate>-->
+          <!--<rollbackCount>2</rollbackCount>-->
+
+          <outputChangeLogFile>liquibase.outputChangeLogFile.txt</outputChangeLogFile>
+          <labels>liquibase.labels</labels>
+          <outputFile>../release.rollback.script.${build.profile.id}.sql</outputFile>
+          <migrationSqlOutputFile>../release.script.${build.profile.id}.sql</migrationSqlOutputFile>
+
+
+          <!--<changeLogFile>../sql/profiles/${build.profile.id}/${liquibase.changeLogFile}</changeLogFile>-->
+          <!--<contexts>${environment}</contexts>-->
+          <!--<driver>${liquibase.driver}</driver>-->
+          <!--<url>${liquibase.url}</url>-->
+          <!--<username>${liquibase.username}</username>-->
+          <!--<password>${liquibase.password}</password>-->
+          <!--<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>-->
+          <!--<outputChangeLogFile>${liquibase.outputChangeLogFile}</outputChangeLogFile>-->
+          <!--<labels>${liquibase.labels}</labels>-->
+          <!--<rollbackTag>${liquibase.rollbackTag}</rollbackTag>-->
+          <!--<outputFile>-->
+          <!--${release.rollback.name}.sql-->
+          <!--</outputFile>-->
+          <!--<migrationSqlOutputFile>-->
+          <!--${release.script.name}.sql-->
+          <!--</migrationSqlOutputFile>-->
+          <!--<systemProperties>-->
+          <!--<property>-->
+          <!--<name>tablespace.index</name>-->
+          <!--<value>${tablespace.index}</value>-->
+          <!--</property>-->
+          <!--<property>-->
+          <!--<name>tablespace.data</name>-->
+          <!--<value>${tablespace.data}</value>-->
+          <!--</property>-->
+          <!--</systemProperties>-->
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <!--<goal>update</goal>-->
+              <goal>migrateSQL</goal>
+              <goal>futureRollbackSQL</goal>
+              <!--<goal>rollback</goal>-->
+            </goals>
+          </execution>
+        </executions>
+
+
+        <!--<executions>-->
+        <!--<execution>-->
+        <!--<phase>process-resources</phase>-->
+        <!--<goals>-->
+        <!--<goal>update</goal>-->
+        <!--</goals>-->
+        <!--</execution>-->
+        <!--</executions>-->
+      </plugin>
+
+    </plugins>
+  </build>
 
 </project>
