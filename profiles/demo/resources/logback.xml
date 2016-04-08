@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Automatically reloading configuration file upon modification-->
+<configuration scan="true" scanPeriod="30 seconds">
+<!--<configuration>-->
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        %-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+  <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/logMain.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logMain.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- FIXME - it does not filter errors only, the reason of problem was not detected -->
+  <appender name="logMainError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <file>${build.profile.log.path}/logMainError.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logMainError.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="utils" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/utils.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>utils.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="repository" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/repository.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>repository.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="bl" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/bl.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>bl.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- scheduler logs, event logging, eventy processing logging -->
+  <appender name="engine" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/engine.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>engine.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="web" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/web.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>web.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="config" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/config.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>config.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="contactManagementService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/contactManagementService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>contactManagementService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="dataModelService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/dataModelService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>dataModelService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="formDesignManagementService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/formDesignManagementService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>formDesignManagementService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="formResultManagementService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/formResultManagementService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>formResultManagementService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="launchManagementService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/launchManagementService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>launchManagementService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="taskManagementService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/taskManagementService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>taskManagementService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="pdfManagementService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${build.profile.log.path}/pdfManagementService.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>pdfManagementService.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>90</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-60(%d{yyyy-MM-dd HH:mm:ss} [%thread]) %-80(%-5level %logger{36}.%M\(%line\)) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!--TODO configure file - appender (s) -->
+
+  <logger name="org.springframework" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="org.hibernate" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="org.hibernate.SQL" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="org.hibernate.SQLQuery" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="org.hibernate.type" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="com.zaxxer.hikari" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="com.mchange.v2.c3p0" level="info">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+
+  <root level="info">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="logMainError"/>
+    <appender-ref ref="LOG_FILE"/>
+  </root>
+
+</configuration>
