@@ -26,9 +26,9 @@
     </profile>
   </profiles>
   <scm>
-    <connection>scm:git:git@gitlab.t1.tenet:cp/FannieMae.git</connection>
-    <url>scm:git:git@gitlab.t1.tenet:cp/FannieMae.git</url>
-    <developerConnection>scm:git:git@gitlab.t1.tenet:cp/FannieMae.git</developerConnection>
+    <connection>scm:git:git@github.com:SergiiVlasiuk/TestNG.git</connection>
+    <url>scm:git:git@github.com:SergiiVlasiuk/TestNG.git</url>
+    <developerConnection>scm:git:git@github.com:SergiiVlasiuk/TestNG.git</developerConnection>
     <tag>test-profiles-1.0.0</tag>
   </scm>
 
