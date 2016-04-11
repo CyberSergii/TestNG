@@ -5,7 +5,7 @@
   <groupId>mvn.multi.module.project</groupId>
   <artifactId>test-profiles</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <modules>
     <module>sub-module-1</module>
     <module>sub-module-2</module>
@@ -32,6 +32,7 @@
 <!--
     <tag>test-profiles-1.0.0</tag>
 -->
+    <tag>1.0.0</tag>
   </scm>
 
   <repositories>
