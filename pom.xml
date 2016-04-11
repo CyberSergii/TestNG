@@ -67,12 +67,12 @@
 
   <distributionManagement>
     <repository>
-      <id>internal</id>
+      <id>central</id>
       <name>Internal Releases</name>
       <url>http://nexus.t1.tenet:8081/nexus/content/repositories/releases/</url>
     </repository>
     <snapshotRepository>
-      <id>internal</id>
+      <id>snapshots</id>
       <name>Internal Snapshots</name>
       <url>http://nexus.t1.tenet:8081/nexus/content/repositories/snapshots/</url>
     </snapshotRepository>
@@ -168,7 +168,7 @@
                         <updateWorkingCopyVersions>true</updateWorkingCopyVersions>
             -->
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>local</releaseProfiles>
+            <releaseProfiles>artifactory</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
