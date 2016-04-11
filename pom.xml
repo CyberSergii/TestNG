@@ -29,7 +29,9 @@
     <connection>scm:git:git@github.com:SergiiVlasiuk/TestNG.git</connection>
     <url>scm:git:git@github.com:SergiiVlasiuk/TestNG.git</url>
     <developerConnection>scm:git:git@github.com:SergiiVlasiuk/TestNG.git</developerConnection>
+<!--
     <tag>test-profiles-1.0.0</tag>
+-->
   </scm>
 
   <repositories>
