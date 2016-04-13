@@ -40,6 +40,11 @@ public class SubModule1Test {
     assertTrue("Should never fail and will ensure that the SubModule1Test is possible to execute", true);
   }
 
+  @Test(groups = "external")
+  public void testUsesExternalServices() {
+    assertTrue("test uses external services should be ignored in most of times.", true);
+  }
+
   @Test
   public void method1() {
     System.out.println("This is method 1");

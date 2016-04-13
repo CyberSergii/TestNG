@@ -38,6 +38,15 @@ __test-profiles-sub-module-3__ (Module only for optional testing) - does not inc
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <!--<skipTests>true</skipTests>-->
+            <excludedGroups>external</excludedGroups>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
           <version>2.5.3</version>
           <configuration>
@@ -116,3 +125,8 @@ __test-profiles-sub-module-3__ (Module only for optional testing) - does not inc
 - mvn release:perform -DuserEditMode=true
 - mvn release:clean
 - mvn release:branch -DbranchName=my-branch -DupdateBranchVersions=true -DupdateWorkingCopyVersions=false
+
+alternative 
+- mvn -B -Dtag=fm-portal-1.0.0_v9 release:prepare -Darguments="-DskipTests"
+- mvn -B -Dtag=fm-portal-1.0.0 release:prepare -Darguments="-DskipTests" -e -X
+
